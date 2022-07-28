@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,8 +29,24 @@ Route::get('/dashboard/posts', function () {
     ]);
 });
 
+/* Routes Login Register */
+
+Route::get('/login', function () {
+    return view('auth.login');
+});
+
+Route::get('/register', function () {
+    return view('auth.register');
+});
+
+
 /* Routes Blogs */
+Route::get('/', function () {
+    return view('user_templates.home');
+});
 
-/* Routes Login */
+Route::get('/blogs', [PostController::class, 'index']);
 
-/* Routes Register */
+Route::get('/about', function () {
+    return view('user_templates.about');
+});
