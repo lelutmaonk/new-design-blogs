@@ -45,8 +45,11 @@ Route::get('/', function () {
     return view('user_templates.home');
 });
 
-Route::get('/blogs', [PostController::class, 'index']);
-
 Route::get('/about', function () {
     return view('user_templates.about');
 });
+
+Route::get('/blogs', [PostController::class, 'index']);
+
+
+Route::get('/blogs/{post:slug}', [PostController::class, 'detailPost']);

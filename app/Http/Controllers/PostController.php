@@ -13,4 +13,16 @@ class PostController extends Controller
             'posts' => Post::latest()->paginate(7)
         ]);
     }
+
+    public function detailPost(Post $post)
+    {
+        return view('user_templates.post', [
+            'post' => $post
+        ]);
+    }
+
+    // public function getRouteKeyName()
+    // {
+    //     return 'slug';
+    // }
 }
