@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PostController;
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -42,11 +43,15 @@ Route::get('/register', function () {
 
 /* Routes Blogs */
 Route::get('/', function () {
-    return view('user_templates.home');
+    return view('user_templates.home', [
+        'test' => Category::all()
+    ]);
 });
 
 Route::get('/about', function () {
-    return view('user_templates.about');
+    return view('user_templates.about', [
+        'test' => Category::all()
+    ]);
 });
 
 Route::get('/blogs', [PostController::class, 'index']);
