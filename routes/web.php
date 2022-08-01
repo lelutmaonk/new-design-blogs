@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\RegisterController;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 
@@ -22,7 +24,7 @@ Route::get('/dashboard', function () {
     return view('templates.test', [
         'title' => 'Dashboard'
     ]);
-});
+})->middleware('auth');
 
 Route::get('/dashboard/posts', function () {
     return view('templates.test2', [
@@ -30,15 +32,21 @@ Route::get('/dashboard/posts', function () {
     ]);
 });
 
+
+
 /* Routes Login Register */
 
-Route::get('/login', function () {
-    return view('auth.login');
-});
+Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 
-Route::get('/register', function () {
-    return view('auth.register');
-});
+Route::post('/login', [LoginController::class, 'authenticate']);
+
+Route::post('/logout', [LoginController::class, 'logout']);
+
+Route::get('/register', [RegisterController::class, 'index']);
+
+Route::post('/register', [RegisterController::class, 'store']);
+
+
 
 
 /* Routes Blogs */

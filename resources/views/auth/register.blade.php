@@ -10,8 +10,8 @@
   <title>Signin Template · Bootstrap v5.0</title>
 
  
-  <!-- Bootstrap core CSS -->
-  <<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 
   <style>
     .bd-placeholder-img {
@@ -37,21 +37,41 @@
 <body class="text-center">
 
   <main class="form-signin">
-    <form>
+    <form action="/register" method="POST">
+      @csrf
       <img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
       <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
       <div class="form-floating">
-        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-        <label for="floatingInput">Email address</label>
+        <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="Name" value="{{ old('name') }}">
+        <label for="name">Name</label>
+          @error('name')
+          <div class="invalid-feedback mb-2"> {{ $message }} </div>
+          @enderror
       </div>
+
       <div class="form-floating">
-        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-        <label for="floatingInput">Email address</label>
+        <input type="text" name="username" class="form-control @error('username') is-invalid @enderror" id="username" placeholder="Username" value="{{ old('username') }}">
+        <label for="username">Username</label>
+        @error('username')
+        <div class="invalid-feedback mb-2"> {{ $message }} </div>
+        @enderror
       </div>
+
       <div class="form-floating">
-        <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-        <label for="floatingPassword">Password</label>
+        <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="email" placeholder="email@gmail.com" value="{{ old('email') }}">
+        <label for="email">Emai</label>
+        @error('email')
+        <div class="invalid-feedback mb-2"> {{ $message }} </div>
+        @enderror
+      </div>
+
+      <div class="form-floating">
+        <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" id="password" placeholder="Password">
+        <label for="password">Password</label>
+        @error('password')
+        <div class="invalid-feedback mb-2"> {{ $message }} </div>
+        @enderror
       </div>
 
       <div class="checkbox mb-3">
@@ -66,6 +86,9 @@
 
 
 
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
+  
 </body>
 
 </html>
