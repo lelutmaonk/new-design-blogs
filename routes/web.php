@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardPostController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterController;
@@ -21,18 +22,12 @@ use Illuminate\Support\Facades\Route;
 /* Routes Dashboard */
 
 Route::get('/dashboard', function () {
-    return view('templates.test', [
+    return view('templates.dashboard', [
         'title' => 'Dashboard'
     ]);
 })->middleware('auth');
 
-Route::get('/dashboard/posts', function () {
-    return view('templates.test2', [
-        'title' => 'Posts Page'
-    ]);
-});
-
-
+Route::resource('/dashboard/posts', DashboardPostController::class)->middleware('auth');
 
 /* Routes Login Register */
 
