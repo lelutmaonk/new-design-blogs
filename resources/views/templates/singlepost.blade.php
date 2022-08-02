@@ -37,7 +37,7 @@
                             <button class="badge bg-danger border-0 p-2" onclick="return confirm('Are You Sure?')"><i class="bi bi-trash"></i></button>
                         </form>
                         <div class="mb-4">
-                            <img class="w-100 rounded" src="{{ $post->image }}"/>
+                            <img class="w-100 rounded" src="{{ asset('storage/' . $post->image )}}"/>
                         </div>
                         <section class="mb-5">
                             <header class="mb-4">

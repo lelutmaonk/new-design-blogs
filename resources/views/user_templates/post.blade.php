@@ -12,7 +12,7 @@
                     <a class="badge bg-secondary text-decoration-none link-light" href="#!">{{ $post->category->name }}</a>
                 </header>
                 <div class="mb-4">
-                    <img class="w-100 rounded" src="{{ $post->image }}"/>
+                    <img class="w-100 rounded" src="{{ asset('storage/' . $post->image )}}"/>
                 </div>
                 <section class="mb-5">
 

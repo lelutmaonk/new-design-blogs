@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class DashboardPostController extends Controller
@@ -47,13 +48,17 @@ class DashboardPostController extends Controller
         $validateData = $request->validate([
             'title' => ['required', 'max:255'],
             'category_id' => ['required'],
-            'body' => ['required']
+            'body' => ['required'],
+            'image' => ['image', 'file', 'max:10240', 'required']
         ]);
+
+        if ($request->file('image')) {
+            $validateData['image'] = $request->file('image')->store('post-image');
+        }
 
         $validateData['slug'] = Str::slug($request->title);
         $validateData['user_id'] = auth()->user()->id;
         $validateData['excerpt'] = Str::limit(strip_tags($request->body), 200, '...');
-        $validateData['image'] = 'asd.jpg';
 
         Post::create($validateData);
 
@@ -101,15 +106,24 @@ class DashboardPostController extends Controller
         $rules = [
             'title' => ['required', 'max:255'],
             'category_id' => ['required'],
-            'body' => ['required']
+            'body' => ['required'],
+            'image' => ['image', 'file', 'max:10240']
         ];
 
         $validateData = $request->validate($rules);
 
+        //jike ada gambar baru hapus file gambar lama
+        if ($request->file('image')) {
+            if ($request->oldImage) {
+                Storage::delete($request->oldImage);
+            }
+            $validateData['image'] = $request->file('image')->store('post-image');
+        }
+
         $validateData['slug'] = Str::slug($request->title);
         $validateData['user_id'] = auth()->user()->id;
         $validateData['excerpt'] = Str::limit(strip_tags($request->body), 200, '...');
-        $validateData['image'] = 'asd.jpg';
+
 
         Post::where('id', $post->id)
             ->update($validateData);
@@ -125,6 +139,12 @@ class DashboardPostController extends Controller
      */
     public function destroy(Post $post)
     {
+
+        // hapus file gambar
+        if ($post->image) {
+            Storage::delete($post->image);
+        }
+
         Post::destroy($post->id);
         return redirect('/dashboard/posts')->with('success', 'Post Has Been Deleteted');
     }

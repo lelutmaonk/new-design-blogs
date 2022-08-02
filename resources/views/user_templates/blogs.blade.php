@@ -25,7 +25,7 @@
     <div class="col-lg-7">
         <a href="/blogs?category={{ $posts[0]->category->slug }}" class="position-absolute btn btn-dark rounded m-2 p-1 text-center text-decoration-none text-light"><span class="bi bi-tag"> {{ $posts[0]->category->name }}</span></a>
         <img class="img-fluid rounded mb-4 mb-lg-0"
-            src="{{ $posts[0]->image }}" /></div>
+            src="{{ asset('storage/' . $posts[0]->image )}}" /></div>
     <div class="col-lg-5">
         <h1 class="font-weight-light">{{ $posts[0]->title }}</h1>
         <a href="/blogs?author={{ $posts[0]->user->name }}" class="text-decoration-none text-secondary"><span class="bi bi-person"> {{ $posts[0]->user->name }}</span></a>
@@ -43,7 +43,7 @@
                 <div class="">
                     <a href="/blogs?category={{ $post->category->slug }}" class="position-absolute btn btn-dark rounded m-2 p-1 text-center text-decoration-none text-light"><span class="bi bi-tag"> {{ $post->category->name }}</span></a>
                     <img class="img-fluid rounded mb-4 mb-lg-0"
-                    src="{{ $post->image }}"/></div>
+                    src="{{ asset('storage/' . $post->image )}}"/></div>
                 
                 <div class="mt-2">
                     <a href="/blogs?author={{ $post->user->name }}" class="text-decoration-none text-secondary"><span class="bi bi-person"> {{ $post->user->name }}</span></a><br>
