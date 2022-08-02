@@ -8,11 +8,30 @@
           </a>
         </li>
         <li class="nav-item">
+          <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" aria-current="page" href="/">
+            <span data-feather="layout"></span>
+            Web
+          </a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link {{ Request::is('dashboard/posts*') ? 'active' : '' }}" href="/dashboard/posts">
             <span data-feather="file"></span>
-            Orders
+            Posts
           </a>
         </li>
       </ul>
+
+      @can('admin')
+      <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-mutes">Administrator</h6>
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <a class="nav-link {{ Request::is('dashboard/categories*') ? 'active' : '' }}" href="/dashboard/categories">
+            <span data-feather="file"></span>
+            Categories
+          </a>
+        </li>
+      </ul>
+      @endcan
+      
     </div>
   </nav>

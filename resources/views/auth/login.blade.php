@@ -56,7 +56,7 @@
       </div>
       @endif
 
-      <img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+      <img class="mb-4" src="https://getbootstrap.com/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
       <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
       <div class="form-floating">
@@ -72,13 +72,8 @@
         <label for="password">Password</label>
       </div>
 
-      <div class="checkbox mb-3">
-        <label>
-          <input type="checkbox" value="remember-me"> Remember me
-        </label>
-      </div>
       <button class="w-100 btn btn-lg btn-dark" type="submit">Login</button>
-      <a href="/register">Register</a>
+      <div class="text-muted mt-3">Don't have account yet ? <a href="/register" class="text-decoration-none text-dark">Register Here</a></div>
       <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
     </form>
   </main>
